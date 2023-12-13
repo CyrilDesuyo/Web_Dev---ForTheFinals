@@ -26,5 +26,43 @@ namespace ForTheFinal.Controllers
 
             return View();
         }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        public ActionResult addUserToDB(FormCollection fc)
+        {
+            String Username = fc["username"];
+            String Email = fc["email"];
+            String Password = fc["password"];
+            int UserType = Convert.ToInt16(fc["select"]);
+
+            User use = new User();
+            use.username = Username;
+            use.email = Email;
+            use.password = Password;
+            use.roleID = UserType;
+
+            RegToDBEntities rte = new RegToDBEntities();
+            rte.Users.Add(use);
+            rte.SaveChanges();
+
+            if (UserType == 1)
+            {
+                return RedirectToAction("AdminPage", "Account");
+            }
+            else if (UserType == 2)
+            {
+
+                return RedirectToAction("UserPage", "Account");
+            }
+
+
+            return RedirectToAction("Login", "Home");
+
+        }
+
     }
 }
