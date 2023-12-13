@@ -12,6 +12,11 @@ namespace ForTheFinal.Controllers
     {
         private RegToDBEntities db = new RegToDBEntities();
 
+        public ActionResult Home()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
@@ -67,6 +72,14 @@ namespace ForTheFinal.Controllers
             return View(users);
         }
 
+        public ActionResult ViewAdmin()
+        {
+            RegToDBEntities db = new RegToDBEntities();
+            var users = db.Users.Where(u => u.roleID == 1).ToList();
+
+            return View(users);
+        }
+
         //new update
         public ActionResult EditUser(int id)
         {
@@ -86,34 +99,59 @@ namespace ForTheFinal.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Retrieve the existing user from the database
                 var existingUser = db.Users.Find(updatedUser.userID);
 
                 if (existingUser == null)
                 {
-                    // Handle the case where the user with the specified ID is not found
                     return HttpNotFound();
                 }
 
-                // Update the properties of the existing user with the values from the edited user
                 existingUser.username = updatedUser.username;
                 existingUser.email = updatedUser.email;
                 existingUser.password = updatedUser.password;
 
-                // Make sure to set the roleID to its existing value
                 existingUser.roleID = updatedUser.roleID;
 
-                // Mark the entity as modified and save changes
                 db.Entry(existingUser).State = EntityState.Modified;
                 db.SaveChanges();
 
-                // Redirect to the user list or another appropriate page
                 return RedirectToAction("ViewUsers");
             }
 
-            // If the model state is not valid, return to the edit form with validation errors
             return View(updatedUser);
         }
 
+
+        //delete
+        public ActionResult ConfirmDelete(int id)
+        {
+            var user = db.Users.Find(id);
+
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(user);
+        }
+
+        // Handle the actual deletion of the user
+        [HttpPost, ActionName("ConfirmDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var user = db.Users.Find(id);
+
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            db.Users.Remove(user);
+            db.SaveChanges();
+
+            // Redirect to the user list or another appropriate page after deletion
+            return RedirectToAction("ViewUsers");
+        }
     }
 }

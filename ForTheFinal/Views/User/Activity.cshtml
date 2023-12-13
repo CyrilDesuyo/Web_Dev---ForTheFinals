@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Activity";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Content/css/activity.css">
+    <title>Event Form</title>
+</head>
+<body>
+
+    <h2>Add Activity</h2>
+
+    <form>
+        <label for="activityName">Activity Name</label>
+        <input type="text" id="activityName" name="activityName" required>
+
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="time">Time</label>
+        <input type="time" id="time" name="time" required>
+
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" required>
+
+        <label for="ootd">OOTD (Outfit of the Day)</label>
+        <input type="text" id="ootd" name="ootd" required>
+
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>
+
+

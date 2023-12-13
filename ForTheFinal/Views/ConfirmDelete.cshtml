@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "ConfirmDelete";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+@model User
+
+@{
+    ViewBag.Title = "Confirm Delete";
+}
+
+<h2>Confirm Delete</h2>
+
+<p>Are you sure you want to delete the user with ID: @Model.userID?</p>
+
+@using (Html.BeginForm("DeleteConfirmed", "User", new { id = Model.userID }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    @Html.ActionLink("Cancel", "ViewUsers", null, new { @class = "btn btn-secondary" })
+}

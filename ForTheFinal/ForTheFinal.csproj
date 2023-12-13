@@ -125,11 +125,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activity.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -161,6 +165,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\activity.css" />
     <Content Include="Content\css\index.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -219,6 +224,13 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\ViewUsers.cshtml" />
     <Content Include="Views\Account\EditUser.cshtml" />
+    <Content Include="Views\ConfirmDelete.cshtml" />
+    <Content Include="Views\Account\ConfirmDelete.cshtml" />
+    <Content Include="Views\Shared\_Layout3.cshtml" />
+    <Content Include="Views\Account\ViewAdmin.cshtml" />
+    <Content Include="Views\Account\Home.cshtml" />
+    <Content Include="Views\User\Home.cshtml" />
+    <Content Include="Views\User\Activity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
