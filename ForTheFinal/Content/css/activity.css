@@ -34,7 +34,7 @@ input, select {
 }
 
 button {
-    background-color: black;
+    background-color: #007bff;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -44,6 +44,6 @@ button {
 }
 
     button:hover {
-        background-color: black;
-        color: #0ef;
+        background-color: #337ab7;
+        color: white;
     }

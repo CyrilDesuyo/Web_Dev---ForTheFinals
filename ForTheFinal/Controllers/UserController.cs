@@ -19,37 +19,41 @@ namespace ForTheFinal.Controllers
             return View();
         }
 
-        public ActionResult addActivityToDB(FormCollection fc)
-        {   
-            string timeString;
-
-            String ActivityName = fc["activityName"];
-            DateTime Date = DateTime.ParseExact(fc["date"], "yy-MM-dd", null);
-            String TimeString = fc["time"];
-            String Location = fc["location"];
-            String OOTD = fc["ootd"];
-
-            Activity act = new Activity();
-            act.activityName = ActivityName;
-            act.date = Date;
-            act.time = Time;
-            act.location = Location;
-            act.ootd = OOTD;
-
-            if (!string.IsNullOrEmpty(timeString) && TimeSpan.TryParse(timeString, out TimeSpan parsedTime))
+        public ActionResult AddActivity(FormCollection fc)
+        {
+            try
             {
-                // Successfully parsed the time string to TimeSpan
-                act.time = parsedTime;
-            }
-            else
-            {
-                // Handle invalid time format or null/empty time string
-                Console.WriteLine("Invalid time format or null/empty time string");
-            }
+                string activityName = fc["activityName"];
+                DateTime date = DateTime.Parse(fc["date"]);
+                TimeSpan time = TimeSpan.Parse(fc["time"]);
+                string location = fc["location"];
+                string ootd = fc["ootd"];
 
-            RegToDBEntities rte = new RegToDBEntities();
-            rte.Activities.Add(act);
-            rte.SaveChanges();
+                Activity act = new Activity
+                {
+                    activityName = activityName,
+                    date = date,
+                    time = time,
+                    location = location,
+                    ootd = ootd,
+                    //createdAt = DateTime.Now
+                };
+
+                using (RegToDBEntities rte = new RegToDBEntities())
+                {
+                    rte.Activities.Add(act);
+                    rte.SaveChanges();
+                }
+
+                return RedirectToAction("Activity", "User");
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it appropriately
+                Console.WriteLine($"Error: {ex.Message}");
+                return View("Error"); // You might want to create an error view
+            }
         }
+
     }
 }

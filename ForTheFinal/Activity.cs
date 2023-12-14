@@ -16,10 +16,14 @@ namespace ForTheFinal
     {
         public int activityID { get; set; }
         public string activityName { get; set; }
+        public object ActivityName { get; internal set; }
         public Nullable<System.DateTime> date { get; set; }
+        public object Date { get; internal set; }
         public Nullable<System.TimeSpan> time { get; set; }
         public string location { get; set; }
+        public object Location { get; internal set; }
         public string ootd { get; set; }
+        public object OOTD { get; internal set; }
         public byte[] createdAt { get; set; }
     }
 }

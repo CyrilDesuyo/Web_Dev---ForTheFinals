@@ -231,6 +231,8 @@
     <Content Include="Views\Account\Home.cshtml" />
     <Content Include="Views\User\Home.cshtml" />
     <Content Include="Views\User\Activity.cshtml" />
+    <Content Include="Views\User\AddActivityToDB.cshtml" />
+    <Content Include="Views\User\AddActivity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

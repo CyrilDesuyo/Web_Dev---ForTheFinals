@@ -66,6 +66,11 @@
             border-radius: 4px;
             cursor: pointer;
         }
+
+        th{
+            color: #fff;
+            background-color: gray;
+        }
     </style>
 </head>
 <body>
@@ -85,7 +90,7 @@
                 <td>@user.username</td>
                 <td>@user.email</td>
                 <td>@user.password</td>
-                <td>
+                <td style="display: flex; align-items: center; justify-content: space-around; border-bottom: 1px solid black; border-left: none; border-right: none; border-top: none;">
                     @Html.ActionLink("Edit", "EditUser", new { id = user.userID }) |
                     @Html.ActionLink("Delete", "ConfirmDelete", new { id = user.userID }, new { @class = "delete-link" })
                 </td>
